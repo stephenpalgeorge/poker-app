@@ -16,26 +16,25 @@
 
     .card {
       display: block;
-      padding: var.$scale--700 var.$scale--800;
+      padding: var.$scale--500 var.$scale--600;
       border: .125rem solid var.$clr--dark;
       text-decoration: none !important;
+      background-color: var.$clr--light;
       color: var.$clr--dark;
 
       transition: box-shadow .2s ease-out;
-      &:hover {
+      &:hover,
+      &:focus {
+        outline: none;
         box-shadow: 0 0 0 .125rem var.$clr--light, 0 0 0 .5rem rgba(var.$clr--red, .24);
       }
 
       h3 {
+        padding-bottom: var.$scale--400;
         font-family: var.$font--serif;
         font-size: var.$font-size--lead;
         color: var.$clr--red;
-        width: max-content;
         border-bottom: .125rem solid currentColor;
-        &::after {
-            content: '\000BB';
-            margin-left: var.$scale--700;
-        }
 
         + * {
           margin-top: var.$scale--500;

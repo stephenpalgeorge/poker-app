@@ -1,17 +1,14 @@
 <script>
+    import Meta from "$lib/components/global/Meta.svelte";
     import Card from "$lib/components/poker/Card.svelte";
+
     let title = "Poker";
     let description = "Learn poker.";
 </script>
 
 <svelte:head>
-    <meta name="description" content="{description}" />
-    <meta property="og:description" content="{description}" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="{title}">
-    <meta name="twitter:description" content="{description}" />
-    <title>{title}</title>
+    <Meta {title} {description} />
 </svelte:head>
 
-<h1>{title}</h1>
+<h1 class="hidden">{title}</h1>
 <Card id="3-h" />
