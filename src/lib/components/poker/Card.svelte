@@ -5,7 +5,6 @@
     export let id = "";
     export let selected = false;
 
-    const [value, suit] = id.split('-');
     const dispatch = createEventDispatcher();
 </script>
 
@@ -13,8 +12,8 @@
     selected = !selected;
     if (selected) dispatch('selected', { id });
 }} class="card" class:selected={selected} {id}>
-    <p class="card-value">{value}</p>
-    <SuitIcon key="{suit}" />
+    <p class="card-value">{id.substring(0, id.indexOf('-'))}</p>
+    <SuitIcon key="{id.substring(id.length - 1)}" />
 </div>
 
 <style lang="scss">

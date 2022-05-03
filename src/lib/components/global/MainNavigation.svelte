@@ -12,9 +12,9 @@
             <SuitIcon key="c" size="xs" />
         </a>
         <ul>
-            <li><a class:current={$page.url.pathname === '/learn'} href="/learn">Learn</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a class:current={$page.url.pathname.includes('/learn')} href="/learn">Learn</a></li>
+            <li><a class:current={$page.url.pathname.includes('/about')} href="/about">About</a></li>
+            <li><a class:current={$page.url.pathname.includes('/contact')} href="/contact">Contact</a></li>
         </ul>
     </nav>
 </section>

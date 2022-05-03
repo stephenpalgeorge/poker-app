@@ -2,19 +2,20 @@
     import Card from "$lib/components/poker/Card.svelte";
 
     export let cards = [];
+    export let selection = [];
 </script>
 
 {#if cards.length > 0}
-    <div class="suit">
+    <div class="card-array">
         {#each cards as card}
-            <Card id={card} />
+            <Card on:selected id={card} selected={selection.includes(card)} />
         {/each}
     </div>
 {/if}
 
 <style lang="scss">
     @use '../../styles/variables' as var;
-    .suit {
+    .card-array {
       $gap: .5rem;
 
       display: flex;

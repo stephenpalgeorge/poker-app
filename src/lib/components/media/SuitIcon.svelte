@@ -2,7 +2,7 @@
     type Suit = 'c'|'d'|'h'|'s'|'clubs'|'diamonds'|'hearts'|'spades';
 
     export let key: Suit;
-    export let size: string = 'sm';
+    export let size: string = 'md';
 </script>
 
 <div class="card-suit suit-icon {size}">
@@ -45,16 +45,19 @@
 </div>
 
 <style lang="scss">
+    @use '../../styles/variables' as var;
+
     .suit-icon  {
         svg {
             width: 100%;
             height: auto;
         }
 
-        &.xs { width: 1rem; }
-        &.sm { width: 1.953rem; }
-        &.md { width: 2.441rem; }
-        &.lg { width: 3.052rem; }
+        &.xs { width: var.$scale--400; }
+        &.sm { width: var.$scale--500; }
+        &.md { width: var.$scale--700; }
+        &.lg { width: var.$scale--800; }
+        &.xl { width: var.$scale--900; }
     }
 
 </style>
