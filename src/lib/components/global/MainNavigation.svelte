@@ -31,6 +31,7 @@
       height: var.$navigation-height;
       box-shadow: 0 .125rem .25rem .125rem rgba(var.$clr--dark, .16);
       background-color: var.$clr--light;
+      z-index: 1;
 
       nav#main-nav {
         @include m.container;

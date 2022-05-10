@@ -18,7 +18,7 @@
 
     .site-container main {
       @include m.container;
-      padding-top: var.$navigation-height + var.$scale--900;
+      padding-block: var.$navigation-height * 2;
     }
 
     :global {
@@ -31,18 +31,34 @@
       h1 {
         font-family: var.$font--serif;
         font-size: var.$scale--900;
-        + * {
+        &:not(.hidden) + * {
           margin-top: var.$scale--900;
         }
       }
 
+      h2 {
+        font-family: var.$font--serif;
+        font-size: var.$scale--800;
+        text-transform: capitalize;
+      }
+
       p {
         line-height: 1.8;
+        font-family: var.$font--sans-serif;
+        width: 100%;
+        max-width: 70ch;
       }
 
       .lead-text {
+        line-height: 1.5;
         font-size: var.$font-size--lead;
         font-family: var.$font--sans-serif;
+        width: 100%;
+        max-width: 50ch;
+
+        & + * {
+          margin-top: var.$scale--400;
+        }
       }
 
       .hidden {

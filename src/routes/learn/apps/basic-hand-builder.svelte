@@ -1,11 +1,15 @@
 <script>
+    // component imports
     import Meta from "$lib/components/global/Meta.svelte";
     import CardArray from '$lib/components/poker/CardArray.svelte';
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
     import deck from "$lib/_data/deck.js";
+    import Card from "$lib/components/poker/Card.svelte";
 
     const title = "Hand Builder (Basic)";
     const description = "Learn the different hands in poker. Build your hand by selecting any five cards and our API will tell you what you’ve got.";
+    let handForm;
+    let handValue;
     let cards = deck;
 
     $: suits = [
@@ -17,8 +21,17 @@
 
     let hand = [];
     let filters = [];
+    function handleHandValue(handValue) {
+        const hand = handValue.split(',');
+        if (hand.length === 5) {
+            handForm.submit();
+        }
+    }
+
     function onSelected(e) {
         hand = [...hand, e.detail.id];
+        handValue.value = hand;
+        handleHandValue(handValue.value);
     }
 
     function handleClear() {
@@ -59,6 +72,21 @@
 </svelte:head>
 
 <h1 class="hidden">{title}</h1>
+<p class="intro">
+    Select cards from the grid below to build your hand. Once you've chosen 5 cards,
+    you'll be forwarded on to a page that breaks down the value of your hand.
+</p>
+
+{#if hand.length > 0}
+    <div class="hand">
+        <p>{hand.length}/5:</p>
+        <div class="cards">
+            {#each hand as card}
+                <Card id={card} layout="simple" />
+            {/each}
+        </div>
+    </div>
+{/if}
 
 <div class="controls">
     <div class="filter" id="suit-filter">
@@ -76,6 +104,9 @@
     <button id="clear-selected" on:click={handleClear}>Clear selection</button>
 </div>
 
+<form bind:this={handForm} action="/learn/apps/hand-analysis" method="post">
+    <input bind:this={handValue} type="hidden" name="hand-list" id="hand-list" />
+</form>
 {#each suits as suit}
     <CardArray on:selected={onSelected} cards={suit} bind:selection={hand} />
 {/each}
@@ -83,6 +114,41 @@
 <style lang="scss">
     @use '../../../lib/styles/variables' as var;
     @use '../../../lib/styles/mixins' as m;
+
+    .intro {
+      font-size: var.$scale--500;
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: var.$scale--600;
+    }
+
+    .hand {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: var.$navigation-height * 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var.$clr--light;
+      font-size: var.$scale--600;
+      font-weight: 200;
+      box-shadow: 0 -1px .125rem 1px rgba(var.$clr--dark, .12);
+
+      p {
+        margin-right: var.$scale--400;
+      }
+
+      .cards {
+        display: flex;
+        :global {
+          .card + .card {
+            margin-left: var.$scale--600;
+          }
+        }
+      }
+    }
 
     .controls {
       padding-block: var.$scale--400;
