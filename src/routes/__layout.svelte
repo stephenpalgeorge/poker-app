@@ -17,12 +17,23 @@
     @use '../lib/styles/variables' as var;
 
     .site-container main {
+      position: relative;
       @include m.container;
       padding-block: var.$navigation-height * 2;
+      @include m.break(var.$breakpoint-md) {
+        padding-inline: var.$scale--600;
+      }
     }
 
     :global {
-      * {
+      ::selection {
+        background-color: rgba(var.$clr--red, .8);
+        color: var.$clr--light;
+      }
+
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;

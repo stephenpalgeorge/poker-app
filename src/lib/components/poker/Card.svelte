@@ -5,7 +5,7 @@
     export let id = "";
     export let selected = false;
     export let layout = 'full';
-    const size = layout === 'full' ? 'md' : 'sm';
+    const size = 'md';
 
     const dispatch = createEventDispatcher();
 </script>
@@ -21,6 +21,7 @@
 <style lang="scss">
     @use 'sass:math';
     @use '../../styles/variables' as var;
+    @use '../../styles/mixins' as m;
 
     @mixin card-theme($clr) {
       border: .262rem solid $clr;
@@ -56,6 +57,10 @@
         .card-value {
           color: var.$clr--light !important;
         }
+      }
+
+      @include m.break(var.$breakpoint-sm) {
+        padding: var.$scale--300 var.$scale--400;
       }
     }
 

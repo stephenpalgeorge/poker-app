@@ -19,7 +19,12 @@ $font-size--lead: $scale--500;
 $content-max-width: 45rem;
 $navigation-height: 4rem;
 
+$clr--black: #000000;
 $clr--dark: #222222;
 $clr--red: #ef1a10;
 $clr--light: #fff;
 $clr--light-grey: #f1f1f1;
+
+$breakpoint-xs: 575px;
+$breakpoint-sm: 767px;
+$breakpoint-md: 991px;

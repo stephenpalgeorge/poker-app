@@ -5,6 +5,7 @@
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
     import deck from "$lib/_data/deck.js";
     import Card from "$lib/components/poker/Card.svelte";
+    import {onMount} from "svelte";
 
     const title = "Hand Builder (Basic)";
     const description = "Learn the different hands in poker. Build your hand by selecting any five cards and our API will tell you what you’ve got.";
@@ -65,6 +66,12 @@
             cards = filtered;
         }
     }
+
+    onMount(() => {
+        // make sure none of the filters are selected when the page loads.
+        Array.from(document.querySelectorAll('input:checked')).map(box => box.checked = false);
+        Array.from(document.querySelectorAll('input:checked + label')).map(l => l.classList.remove('selected'));
+    });
 </script>
 
 <svelte:head>
@@ -138,6 +145,7 @@
 
       p {
         margin-right: var.$scale--400;
+        width: max-content;
       }
 
       .cards {
@@ -187,8 +195,19 @@
         transition: transform .2s ease-out;
       }
 
-      input:checked + label {
+      input:checked + label,
+      input:focus + label {
         transform: scale(1.4);
+      }
+
+      @include m.break(var.$breakpoint-sm) {
+        p {
+          display: none;
+        }
+
+        .options {
+          margin-left: 0;
+        }
       }
     }
 

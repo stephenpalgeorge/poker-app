@@ -27,3 +27,9 @@
     font-weight: 900;
   }
 }
+
+@mixin break($point) {
+  @media screen and (max-width: $point) {
+    @content;
+  }
+}
