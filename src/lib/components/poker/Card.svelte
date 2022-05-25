@@ -83,8 +83,10 @@
       }
     }
 
-    .card.full[data-suit*="c"], .card.full[data-suit*="s"] { @include card-theme(var.$clr--dark); }
-    .card.full[data-suit*="d"], .card.full[data-suit*="h"] { @include card-theme(var.$clr--red); }
+    .card.full[data-suit*="c"] { @include card-theme(var.$clr--clubs); }
+    .card.full[data-suit*="s"] { @include card-theme(var.$clr--spades); }
+    .card.full[data-suit*="d"] { @include card-theme(var.$clr--diamonds); }
+    .card.full[data-suit*="h"] { @include card-theme(var.$clr--hearts); }
 
     .card.simple {
         display: flex;
@@ -94,16 +96,28 @@
           margin-right: math.div(var.$scale--100, 2);
         }
 
-        &[data-suit*="c"], &[data-suit*="s"] {
+        &[data-suit*="c"] {
           .card-value {
-            color: var.$clr--dark;
+            color: var.$clr--clubs;
           }
         }
 
-      &[data-suit*="d"], &[data-suit*="h"] {
-        .card-value {
-          color: var.$clr--red;
+        &[data-suit*="s"] {
+          .card-value {
+            color: var.$clr--spades;
+          }
         }
-      }
+
+        &[data-suit*="d"] {
+          .card-value {
+            color: var.$clr--diamonds;
+          }
+        }
+
+        &[data-suit*="h"] {
+          .card-value {
+            color: var.$clr--hearts;
+          }
+        }
     }
 </style>

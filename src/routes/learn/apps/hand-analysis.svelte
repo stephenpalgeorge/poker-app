@@ -1,11 +1,10 @@
 <script>
-    import { goto } from "$app/navigation";
     // component imports
     import Meta from "$lib/components/global/Meta.svelte";
     import CardArray from "$lib/components/poker/CardArray.svelte";
     import analysis from "$lib/_data/analysis.js";
     import Feature from "$lib/components/poker/Feature.svelte";
-    import HandRank from "$lib/components/poker/HandRank.svelte";
+    import Breadcrumbs from "$lib/components/global/Breadcrumbs.svelte";
 
     const title = "Hand analysis";
     const description = "Your poker hand will be analysed by our API. See a breakdown of the contents and value of your hand.";
@@ -47,10 +46,15 @@
     <Meta {title} {description} />
 </svelte:head>
 
+<Breadcrumbs />
 <h1 class="hidden">{title}</h1>
 
 {#if data.type?.length > 0}
     <h2>{handAnalysis.title}</h2>
+{/if}
+
+{#if handAnalysis.description}
+    <p class="lead-text">{handAnalysis.description}</p>
 {/if}
 
 {#if data.cards?.length > 0}
@@ -59,9 +63,6 @@
     </div>
 {/if}
 
-{#if handAnalysis.description}
-    <p class="lead-text">{handAnalysis.description}</p>
-{/if}
 
 {#if handAnalysis.tie}
     <p>{handAnalysis.tie}</p>

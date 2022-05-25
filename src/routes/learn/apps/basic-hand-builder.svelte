@@ -1,11 +1,12 @@
 <script>
+    import {onMount} from "svelte";
     // component imports
     import Meta from "$lib/components/global/Meta.svelte";
     import CardArray from '$lib/components/poker/CardArray.svelte';
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
     import deck from "$lib/_data/deck.js";
     import Card from "$lib/components/poker/Card.svelte";
-    import {onMount} from "svelte";
+    import Breadcrumbs from "$lib/components/global/Breadcrumbs.svelte";
 
     const title = "Hand Builder (Basic)";
     const description = "Learn the different hands in poker. Build your hand by selecting any five cards and our API will tell you what you’ve got.";
@@ -78,6 +79,7 @@
     <Meta {title} {description} />
 </svelte:head>
 
+<Breadcrumbs />
 <h1 class="hidden">{title}</h1>
 <p class="intro">
     Select cards from the grid below to build your hand. Once you've chosen 5 cards,

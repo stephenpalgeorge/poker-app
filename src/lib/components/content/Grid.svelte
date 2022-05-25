@@ -1,19 +1,36 @@
 <script>
     export let block = false;
+    export let title = "";
 </script>
 
-<section class="grid" class:block={block}>
-    <slot></slot>
+<section class="grid-container">
+    {#if title.length > 0}
+        <h2 class="grid-title">{title}</h2>
+    {/if}
+
+    <slot name="description"></slot>
+    <div class="grid" class:block={block}>
+        <slot></slot>
+    </div>
 </section>
 
 <style lang="scss">
     @use '../../styles/variables' as var;
 
-    .grid {
-      margin: var.$scale--800 -#{var.$scale--800};
-      padding: var.$scale--800;
-      background-color: var.$clr--light-grey;
+    :global {
+      * + .grid-container {
+        margin-top: var.$scale--600 !important;
+      }
+    }
 
+    .grid-container {
+      background-color: var.$clr--light-grey;
+      padding: var.$scale--800;
+      margin-inline:-#{var.$scale--800};
+      margin-bottom: var.$scale--800;
+    }
+
+    .grid {
       &:not(.block) {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));

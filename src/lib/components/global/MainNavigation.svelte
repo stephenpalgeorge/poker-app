@@ -23,7 +23,7 @@
         <ul class="{ navigationVisible ? 'in' : 'out' }">
             {#each MainNav as item}
                 <li on:click={handleRouteChange}>
-                    <a class:current={$page.url.pathname.includes(item.url)} href="{item.url}">
+                    <a class:current={$page.url.pathname.includes(item.url)} aria-current={$page.url.pathname === item.url ? "page" : null} href="{item.url}">
                         {item.label}
                     </a>
                 </li>

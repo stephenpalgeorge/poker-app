@@ -42,6 +42,7 @@
       h1 {
         font-family: var.$font--serif;
         font-size: var.$scale--900;
+        text-transform: uppercase;
         &:not(.hidden) + * {
           margin-top: var.$scale--900;
         }
@@ -51,6 +52,9 @@
         font-family: var.$font--serif;
         font-size: var.$scale--800;
         text-transform: capitalize;
+        &:not(.hidden) + * {
+          margin-top: var.$scale--600;
+        }
       }
 
       p {
@@ -65,7 +69,6 @@
         font-size: var.$font-size--lead;
         font-family: var.$font--sans-serif;
         width: 100%;
-        max-width: 50ch;
 
         & + * {
           margin-top: var.$scale--400;
@@ -74,6 +77,14 @@
 
       .hidden {
         @include m.hidden;
+      }
+
+      a {
+        color: var.$clr--red;
+        transition: color .2s ease;
+        &:hover {
+          color: var.$clr--dark-red;
+        }
       }
     }
 </style>

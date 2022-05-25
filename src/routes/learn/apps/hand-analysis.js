@@ -3,7 +3,7 @@ export async function post({ request }) {
     const hand = data.get('hand-list');
     if (hand) {
         let cards = hand.split(',');
-        const url = `${import.meta.env.VITE_API_DOMAIN}/api/analysis`;
+        const url = `${import.meta.env.VITE_API_DOMAIN}/api/hands/analysis`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
