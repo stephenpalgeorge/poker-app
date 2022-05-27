@@ -13,7 +13,7 @@
     const cardIds = [];
     let highlights = [];
     data.cards.forEach(c => cardIds.push(`${c.value}-${c.suit}`));
-    let handAnalysis = analysis[data.type];
+    $: handAnalysis = analysis[data.type];
 
     function handleHighlight(e) {
         console.log(e);
