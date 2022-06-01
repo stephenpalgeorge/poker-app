@@ -6,7 +6,10 @@ export async function get({ request }) {
         cookies[partials[0]] = partials[1];
     });
 
+    // if there's a "hand" cookie this should contain the cards from a previous
+    // analysis, so we perform the API call again with the same cards.
     if (cookies['hand'] && cookies['hand'].length > 0) {
+        // the cookie is encoded, so there are no commas, but rather the `%2C` instead.
         let cards = cookies['hand'].split('%2C');
         const url = `${import.meta.env.VITE_API_DOMAIN}/api/hands/analysis`;
         const response = await fetch(url, {
@@ -25,6 +28,7 @@ export async function get({ request }) {
                 body: { data: data.description },
             }
         }
+        // @todo implement error handling here
     }
 }
 
@@ -51,7 +55,8 @@ export async function post({ request }) {
                 body: { data: data.description },
             }
         }
+        // @todo implement error handling here
     } else {
-        // return an error
+        // @todo return an error
     }
 }

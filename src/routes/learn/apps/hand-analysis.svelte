@@ -16,7 +16,6 @@
     $: handAnalysis = analysis[data.type];
 
     function handleHighlight(e) {
-        console.log(e);
         const type = e.detail.target.dataset.featureType;
         if (type && (type === 'straight' || type === 'flush')) {
             highlights = e.detail.value === 1 ? cardIds : [];

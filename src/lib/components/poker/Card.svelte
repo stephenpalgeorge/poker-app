@@ -13,6 +13,7 @@
 <div on:click={() => {
     selected = !selected;
     if (selected) dispatch('selected', { id });
+    else dispatch('unselected', { id });
 }} class="card {layout}" class:selected={selected} data-suit="{id.substring(id.length - 1)}">
     <p class="card-value">{id.substring(0, id.indexOf('-'))}</p>
     <SuitIcon key="{id.substring(id.length - 1)}" {size} />

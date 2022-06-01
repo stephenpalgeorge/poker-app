@@ -36,6 +36,15 @@
         handleHandValue(handValue.value);
     }
 
+    function onUnselected(e) {
+        const index = hand.indexOf(e.detail.id);
+        if (index >= 0) {
+            hand = [...hand.slice(0, index), ...hand.slice(index + 1)];
+            handValue.value = hand;
+            handleHandValue(handValue.value);
+        }
+    }
+
     function handleClear() {
         const selection = Array.from(document.querySelectorAll('.card.selected'));
         const selectedFilters = Array.from(document.querySelectorAll('.filter input:checked + label'));
@@ -117,7 +126,7 @@
     <input bind:this={handValue} type="hidden" name="hand-list" id="hand-list" />
 </form>
 {#each suits as suit}
-    <CardArray on:selected={onSelected} cards={suit} bind:selection={hand} />
+    <CardArray on:selected={onSelected} on:unselected={onUnselected} cards={suit} bind:selection={hand} />
 {/each}
 
 <style lang="scss">

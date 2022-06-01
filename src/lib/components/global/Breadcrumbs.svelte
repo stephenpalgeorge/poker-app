@@ -9,7 +9,6 @@
     });
 
     $: crumbs = links.length === 0 ? defaultLinks : links;
-    $: console.log(crumbs);
 </script>
 
 {#if crumbs.length > 2}

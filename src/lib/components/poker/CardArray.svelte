@@ -8,7 +8,7 @@
 {#if cards.length > 0}
     <div class="card-array">
         {#each cards as card}
-            <Card on:selected id={card} selected={selection.includes(card)} />
+            <Card on:selected on:unselected id={card} selected={selection.includes(card)} />
         {/each}
     </div>
 {/if}
