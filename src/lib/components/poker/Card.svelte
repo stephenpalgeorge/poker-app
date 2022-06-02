@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import {createEventDispatcher} from 'svelte';
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
 
     export let id = "";
