@@ -70,7 +70,7 @@
 <div id="hand-features">
     <h3 class="hidden">Hand features</h3>
     <p id="features">This hand contains:</p>
-    <ul id="feature-list" role="list">
+    <ul id="feature-list">
         {#each data.features as { type, value }}
             <li>
                 <Feature on:check={handleHighlight} {type} {value} />
