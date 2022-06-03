@@ -153,6 +153,7 @@
       font-size: var.$scale--600;
       font-weight: 200;
       box-shadow: 0 -1px .125rem 1px rgba(var.$clr--dark, .12);
+      z-index: 1;
 
       p {
         margin-right: var.$scale--400;
