@@ -12,19 +12,27 @@
     });
 </script>
 
-<div class="root theme--{theme}">
-    <MainNavigation />
+<div class="theme--{theme}">
+    <div class="root">
+        <MainNavigation />
 
-    <main id="main-content">
-        <slot></slot>
-    </main>
+        <main id="main-content">
+            <slot></slot>
+        </main>
 
-    <footer></footer>
+        <footer></footer>
+    </div>
 </div>
 
 <style lang="scss">
     @use '../lib/styles/mixins' as m;
     @use '../lib/styles/variables' as var;
+
+    .root {
+      @include m.theme {
+          background-color: m.t(bg);
+      }
+    }
 
     .root main {
       position: relative;
