@@ -1,8 +1,18 @@
 <script>
+    import {onMount} from "svelte";
     import MainNavigation from "$lib/components/global/MainNavigation.svelte";
+
+    let theme;
+    onMount(() => {
+        console.log(window.matchMedia('(prefers-color-scheme: dark)'));
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            theme = e.matches ? 'dark' : 'light';
+        });
+    });
 </script>
 
-<div class="site-container">
+<div class="root theme--{theme}">
     <MainNavigation />
 
     <main id="main-content">
@@ -16,7 +26,7 @@
     @use '../lib/styles/mixins' as m;
     @use '../lib/styles/variables' as var;
 
-    .site-container main {
+    .root main {
       position: relative;
       @include m.container;
       padding-block: var.$navigation-height * 2;
