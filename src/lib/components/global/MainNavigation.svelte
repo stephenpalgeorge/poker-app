@@ -3,10 +3,8 @@
     import { MainNav } from "../../_config/navigation.js";
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
 
-    let navigationVisible = false;
-
+    let navigationOpen = false;
     function handleRouteChange() {
-        navigationVisible = false;
         window.scrollTo(0, 0);
     }
 </script>
@@ -19,8 +17,16 @@
             <SuitIcon key="d" size="xs" />
             <SuitIcon key="c" size="xs" />
         </a>
-        <button on:click={() => navigationVisible = !navigationVisible} id="menu-toggle">menu</button>
-        <ul class="{ navigationVisible ? 'in' : 'out' }">
+
+        <input type="checkbox" name="main-menu-toggle" id="main-menu-toggle" bind:checked={navigationOpen} />
+        <label for="main-menu-toggle">
+            <p>Menu</p>
+            <span id="menu-icon">
+                <div></div><div></div>
+            </span>
+        </label>
+
+        <ul>
             {#each MainNav as item}
                 <li on:click={handleRouteChange}>
                     <a class:current={$page.url.pathname.includes(item.url)} aria-current={$page.url.pathname === item.url ? "page" : null} href="{item.url}">
@@ -33,6 +39,7 @@
 </section>
 
 <style lang="scss">
+    @use 'sass:math';
     @use '../../styles/mixins' as m;
     @use '../../styles/variables' as var;
 
@@ -66,13 +73,6 @@
           @include m.link-focus(var.$clr--red);
         }
 
-        #menu-toggle {
-          display: none;
-          @include m.break(var.$breakpoint-sm) {
-            display: block;
-          }
-        }
-
         > ul {
           display: flex;
           list-style-type: none;
@@ -102,39 +102,91 @@
               font-weight: 900;
             }
           }
+        }
 
-          @include m.break(var.$breakpoint-sm) {
-            position: absolute;
-            top: var.$navigation-height;
-            flex-direction: column;
-            width: 100vw;
-            background-color: var.$clr--light;
-            box-shadow: $shadow;
+        input[type="checkbox"] {
+          display: none;
+          & + label {
+            display: none;
+          }
+        }
 
-            transition: left .3s ease-out, opacity .3s ease-out;
-            &.in {
-              left: 0 - var.$scale--600;
-              opacity: 1;
-            }
+        @include m.break(var.$breakpoint-sm) {
+          input[type="checkbox"] {
+            + label {
+              display: flex;
+              align-items: center;
+              color: black;
 
-            &.out {
-              left: 120%;
-              opacity: 0;
-            }
+              p {
+                font-size: var.$scale--400;
+                text-transform: uppercase;
+              }
 
-            li {
-              width: 100%;
-              padding-block: var.$scale--600;
-              text-align: center;
-              background-color: var.$clr--light;
+              span {
+                $size: math.div(var.$navigation-height, 2);
+                position: relative;
+                display: block;
+                margin-left: var.$scale--300;
+                width: $size;
+                height: $size;
+                flex-shrink: 0;
 
-              a {
-                font-size: var.$scale--500;
+                div {
+                  position: absolute;
+                  width: 90%;
+                  height: 25%;
+                  top: 12.5%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background-color: var.$clr--spades;
+                  transition: transform .2s ease;
+
+                  &:last-of-type {
+                    top: unset;
+                    bottom: 12.5%;
+                  }
+                }
               }
             }
 
-            li + li {
-              margin-left: 0;
+            ~ ul {
+              position: absolute;
+              top: var.$navigation-height;
+              left: 120%;
+              flex-direction: column;
+              width: 100vw;
+              background-color: var.$clr--light;
+              box-shadow: $shadow;
+              opacity: 0;
+              transition: left .25s ease-out, opacity .25s ease-out;
+
+              li {
+                width: 100%;
+                padding-block: var.$scale--600;
+                text-align: center;
+                background-color: var.$clr--light;
+
+                a {
+                  font-size: var.$scale--500;
+                }
+              }
+
+              li + li {
+                margin-left: 0;
+              }
+            }
+
+            &:checked {
+              + label span div {
+                top: 50%;
+                transform: translate(-50%, -50%);
+              }
+
+              ~ ul {
+                left: 0 - var.$scale--600;
+                opacity: 1;
+              }
             }
           }
         }
