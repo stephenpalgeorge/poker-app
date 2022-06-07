@@ -4,7 +4,6 @@
 
     let theme;
     onMount(() => {
-        console.log(window.matchMedia('(prefers-color-scheme: dark)'));
         theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             theme = e.matches ? 'dark' : 'light';
@@ -91,6 +90,10 @@
         & + * {
           margin-top: var.$scale--400;
         }
+      }
+
+      .emphasis {
+        font-style: italic;
       }
 
       .hidden {

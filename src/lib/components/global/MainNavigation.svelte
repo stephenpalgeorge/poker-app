@@ -5,6 +5,7 @@
 
     let navigationOpen = false;
     function handleRouteChange() {
+        navigationOpen = false;
         window.scrollTo(0, 0);
     }
 </script>
