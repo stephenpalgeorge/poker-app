@@ -1,6 +1,8 @@
 <script>
     export let id;
     export let options = [];
+    export let onChange = () => {};
+    export let val;
 </script>
 
 {#if options.length > 0}
@@ -9,7 +11,7 @@
             <slot></slot>
         </label>
         <div class="select-element">
-            <select name="{id}" id="{id}">
+            <select name="{id}" id="{id}" on:change={onChange} bind:value={val}>
                 {#each options as option}
                     <option value="{option.value}">{option.label}</option>
                 {/each}

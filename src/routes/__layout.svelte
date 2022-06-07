@@ -1,17 +1,21 @@
 <script>
     import {onMount} from "svelte";
     import MainNavigation from "$lib/components/global/MainNavigation.svelte";
+    import {themeStore} from "$lib/stores/theme.js";
 
     let theme;
     onMount(() => {
         theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (window.localStorage.getItem('theme')) theme = window.localStorage.getItem('theme');
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             theme = e.matches ? 'dark' : 'light';
+            window.localStorage.setItem('theme', theme);
+            $themeStore = theme;
         });
     });
 </script>
 
-<div class="theme--{theme}">
+<div class="theme--{$themeStore}">
     <div class="root">
         <MainNavigation />
 
