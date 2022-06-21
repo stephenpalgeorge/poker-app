@@ -113,7 +113,7 @@
             {#each ['s', 'h', 'd', 'c'] as suit}
                 <input on:change={handleFilter} class="hidden" type="checkbox" name="filter-{suit}" id="suit-filter--{suit}" />
                 <label for="suit-filter--{suit}">
-                    <SuitIcon key={suit} size="sm" />
+                    <SuitIcon key={suit} size="sm" color="#fff" />
                 </label>
             {/each}
         </div>
@@ -149,10 +149,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var.$clr--light;
+      background-color: var(--bg);
       font-size: var.$scale--600;
       font-weight: 200;
-      box-shadow: 0 -1px .125rem 1px rgba(var.$clr--dark, .12);
+      box-shadow: 0 -1px .125rem 1px var(--shadow-color);
       z-index: 1;
 
       p {

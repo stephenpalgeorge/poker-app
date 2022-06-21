@@ -49,7 +49,7 @@
         line-height: inherit;
 
         &:focus {
-          outline: .25rem solid rgba(var.$clr--diamonds, .4);
+          outline: .25rem solid var(--focus-outline);
           outline-offset: .125rem;
         }
       }

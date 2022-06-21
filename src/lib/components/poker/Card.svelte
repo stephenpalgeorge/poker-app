@@ -24,13 +24,21 @@
     @use '../../styles/variables' as var;
     @use '../../styles/mixins' as m;
 
-    @mixin card-theme($clr) {
+    @mixin card-theme($clr, $clr-hover: var.$clr--light) {
       border: .262rem solid $clr;
       transition: background-color .2s ease-out;
-      background-color: var.$clr--light;
+      background-color: var(--bg-card);
+      .card-value {
+        color: $clr;
+      }
+
       &:hover,
-      &.selected { background-color: $clr; }
-      .card-value { color: $clr; }
+      &.selected {
+        background-color: $clr;
+        .card-value {
+          color: $clr-hover;
+        }
+      }
     }
 
     .card-value {
@@ -53,13 +61,6 @@
         text-align: center;
       }
 
-      &:hover,
-      &.selected {
-        .card-value {
-          color: var.$clr--light !important;
-        }
-      }
-
       @include m.break(var.$breakpoint-sm) {
         padding: var.$scale--300 var.$scale--400;
       }
@@ -73,21 +74,48 @@
           transition: fill .2s ease-out;
         }
 
-        &:hover,
-        &.selected {
+        &[data-suit*="c"]:hover,
+        &[data-suit*="c"].selected {
             svg g,
             svg path,
             svg polygon {
-              fill: var.$clr--light;
+              fill: var(--clubs-contents-hover);
             }
+        }
+
+        &[data-suit*="d"]:hover,
+        &[data-suit*="d"].selected {
+          svg g,
+          svg path,
+          svg polygon {
+            fill: var(--diamonds-contents-hover);
+          }
+        }
+
+        &[data-suit*="h"]:hover,
+        &[data-suit*="h"].selected {
+          svg g,
+          svg path,
+          svg polygon {
+            fill: var(--hearts-contents-hover);
+          }
+        }
+
+        &[data-suit*="s"]:hover,
+        &[data-suit*="s"].selected {
+          svg g,
+          svg path,
+          svg polygon {
+            fill: var(--spades-contents-hover);
+          }
         }
       }
     }
 
-    .card.full[data-suit*="c"] { @include card-theme(var.$clr--clubs); }
-    .card.full[data-suit*="s"] { @include card-theme(var.$clr--spades); }
-    .card.full[data-suit*="d"] { @include card-theme(var.$clr--diamonds); }
-    .card.full[data-suit*="h"] { @include card-theme(var.$clr--hearts); }
+    .card.full[data-suit*="c"] { @include card-theme(var(--clubs-color), var(--clubs-contents-hover)); }
+    .card.full[data-suit*="s"] { @include card-theme(var(--spades-color), var(--spades-contents-hover)); }
+    .card.full[data-suit*="d"] { @include card-theme(var(--diamonds-color), var(--diamonds-contents-hover)); }
+    .card.full[data-suit*="h"] { @include card-theme(var(--hearts-color), var(--hearts-contents-hover)); }
 
     .card.simple {
         display: flex;
@@ -99,25 +127,25 @@
 
         &[data-suit*="c"] {
           .card-value {
-            color: var.$clr--clubs;
+            color: var(--simple-card-clubs-color);
           }
         }
 
         &[data-suit*="s"] {
           .card-value {
-            color: var.$clr--spades;
+            color: var(--simple-card-spades-color);
           }
         }
 
         &[data-suit*="d"] {
           .card-value {
-            color: var.$clr--diamonds;
+            color: var(--simple-card-diamonds-color);
           }
         }
 
         &[data-suit*="h"] {
           .card-value {
-            color: var.$clr--hearts;
+            color: var(--simple-card-hearts-color);
           }
         }
     }

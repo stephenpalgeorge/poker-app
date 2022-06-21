@@ -16,6 +16,7 @@
 
 <style lang="scss">
     @use '../../styles/variables' as var;
+    @use '../../styles/mixins' as m;
 
     :global {
       * + .grid-container {
@@ -24,7 +25,7 @@
     }
 
     .grid-container {
-      background-color: var.$clr--light-grey;
+      background-color: var(--bg-offset);
       padding: var.$scale--800;
       margin-inline:-#{var.$scale--800};
       margin-bottom: var.$scale--800;

@@ -28,13 +28,29 @@
 </div>
 
 <style lang="scss">
+    @use 'sass:map';
     @use '../lib/styles/mixins' as m;
     @use '../lib/styles/variables' as var;
+    @use '../lib/styles/themes' as *;
+
+    :root {
+      $default: map.get($themes, default);
+      @each $key, $value in $default {
+        --#{$key}: #{$value};
+      }
+    }
+
+    @each $theme, $map in $themes {
+      .theme--#{$theme} {
+        @each $key, $value in $map {
+          --#{$key}: #{$value};
+        }
+      }
+    }
 
     .root {
-      @include m.theme {
-          background-color: m.t(bg);
-      }
+      background-color: var(--bg);
+      min-height: 100vh;
     }
 
     .root main {
@@ -48,7 +64,7 @@
 
     :global {
       ::selection {
-        background-color: rgba(var.$clr--red, .8);
+        background-color: var(--selection);
         color: var.$clr--light;
       }
 
@@ -58,6 +74,10 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+      }
+
+      h1, h2, h3, h4, h5, h6, p, label {
+        color: var(--text-color);
       }
 
       h1 {
@@ -88,7 +108,6 @@
       .lead-text {
         line-height: 1.5;
         font-size: var.$font-size--lead;
-        font-family: var.$font--sans-serif;
         width: 100%;
 
         & + * {
@@ -105,7 +124,7 @@
       }
 
       a {
-        color: var.$clr--red;
+        color: var(--highlight);
         transition: color .2s ease;
         &:hover {
           color: var.$clr--dark-red;

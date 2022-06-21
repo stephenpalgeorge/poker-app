@@ -19,21 +19,21 @@
       padding: var.$scale--500 var.$scale--600;
       border: .125rem solid var.$clr--dark;
       text-decoration: none !important;
-      background-color: var.$clr--light;
+      background-color: var(--bg);
       color: var.$clr--dark;
 
       transition: box-shadow .2s ease-out;
       &:hover,
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 .125rem var.$clr--light, 0 0 0 .5rem rgba(var.$clr--red, .24);
+        box-shadow: 0 0 0 .125rem var(--bg-offset), 0 0 0 .5rem var(--focus-outline);
       }
 
       h3 {
         padding-bottom: var.$scale--400;
         font-family: var.$font--serif;
         font-size: var.$font-size--lead;
-        color: var.$clr--red;
+        color: var(--highlight);
         border-bottom: .125rem solid currentColor;
 
         + * {

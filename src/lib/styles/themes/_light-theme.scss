@@ -1,3 +1,24 @@
+@use '../variables' as var;
+
 $theme: (
-  bg: #fff,
+  bg: var.$clr--light,
+  bg-offset: var.$clr--light-grey,
+  bg-card: var.$clr--light,
+  clubs-contents-hover: var.$clr--light,
+  diamonds-contents-hover: var.$clr--light,
+  hearts-contents-color: var.$clr--light,
+  spades-contents-color: var.$clr--light,
+  clubs-color: var.$clr--dark-grey,
+  diamonds-color: var.$clr--red,
+  hearts-color: var.$clr--dark-red,
+  spades-color: var.$clr--dark,
+  simple-card-clubs-color: var.$clr--clubs,
+  simple-card-diamonds-color: var.$clr--diamonds,
+  simple-card-hearts-color: var.$clr--hearts,
+  simple-card-spades-color: var.$clr--spades,
+  text-color: var.$clr--dark,
+  shadow-color: rgba(var.$clr--dark, .16),
+  highlight: var.$clr--red,
+  selection: rgba(var.$clr--red, .8),
+  focus-outline: rgba(var.$clr--red, .4),
 );

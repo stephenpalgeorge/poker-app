@@ -2,6 +2,7 @@
 @use 'dark-theme' as dark;
 
 $themes: (
+  default: light.$theme,
   light: light.$theme,
   dark: dark.$theme,
 );

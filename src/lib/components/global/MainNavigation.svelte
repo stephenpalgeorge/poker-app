@@ -1,7 +1,8 @@
 <script>
     import { page } from "$app/stores";
-    import { MainNav } from "../../_config/navigation.js";
+    import { MainNav } from "$lib/_config/navigation.js";
     import SuitIcon from "$lib/components/media/SuitIcon.svelte";
+    import {themeStore} from "$lib/stores/theme.js";
 
     let navigationOpen = false;
     function handleRouteChange() {
@@ -13,10 +14,17 @@
 <section id="top-bar">
     <nav id="main-nav">
         <a on:click={handleRouteChange} href="/">
-            <SuitIcon key="s" size="xs" />
-            <SuitIcon key="h" size="xs" />
-            <SuitIcon key="d" size="xs" />
-            <SuitIcon key="c" size="xs" />
+            {#if $themeStore === 'light'}
+                <SuitIcon key="s" size="xs" />
+                <SuitIcon key="h" size="xs" />
+                <SuitIcon key="d" size="xs" />
+                <SuitIcon key="c" size="xs" />
+            {:else}
+                <SuitIcon key="s" size="xs" color="#fff" />
+                <SuitIcon key="h" size="xs" color="#fff" />
+                <SuitIcon key="d" size="xs" color="#fff" />
+                <SuitIcon key="c" size="xs" color="#fff" />
+            {/if}
         </a>
 
         <input type="checkbox" name="main-menu-toggle" id="main-menu-toggle" bind:checked={navigationOpen} />
@@ -45,16 +53,14 @@
     @use '../../styles/variables' as var;
 
     #top-bar {
-      $shadow: 0 .125rem .25rem .125rem rgba(var.$clr--dark, .16);
-
       position: fixed;
       left: 0;
       top: 0;
       width: 100%;
       max-width: 100vw;
       height: var.$navigation-height;
-      box-shadow: $shadow;
-      background-color: var.$clr--light;
+      box-shadow: 0 .125rem .25rem .125rem var(--shadow-color);
+      background-color: var(--bg);
       z-index: 1;
 
       @include m.break(var.$breakpoint-sm) {
@@ -87,11 +93,11 @@
             font-weight: 400;
             text-transform: uppercase;
             text-decoration: none;
-            color: var.$clr--dark;
+            color: var(--text-color);
 
             transition: color .2s ease-out, font-weight .2s ease-out;
             &:hover {
-              color: var.$clr--red;
+              color: var(--highlight);
               text-decoration: underline;
             }
 
@@ -99,7 +105,7 @@
 
             &:active,
             &.current {
-              color: var.$clr--red;
+              color: var(--highlight);
               font-weight: 900;
             }
           }
@@ -158,7 +164,7 @@
               flex-direction: column;
               width: 100vw;
               background-color: var.$clr--light;
-              box-shadow: $shadow;
+              box-shadow: 0 .125rem .25rem .125rem var(--shadow-color);
               opacity: 0;
               transition: left .25s ease-out, opacity .25s ease-out;
 
